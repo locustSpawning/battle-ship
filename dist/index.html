@@ -17,11 +17,26 @@
             <h2>Game settings</h2>
             <h3 id="p1">Player 1 - Human</h3>
             <h3 id="p2">Player 2 -</h3>
-            <div id="p2-select">
-                <button class="p2-buttons">Human</button>
-                <button class="p2-buttons">CPU</button>
-            </div>
-            <button id="begin">Begin!</button>
+            <form id="p2-form-select">
+                <div class="p2-buttons">
+                    <input
+                        type="radio"
+                        id="p2Human"
+                        name="p2-buttons"
+                        value="p2Human"
+                    />
+                    <label for="p2Human">Human</label>
+                    <input
+                        type="radio"
+                        id="p2CPU"
+                        name="p2-buttons"
+                        value="p2CPU"
+                    />
+                    <label for="p2CPU">CPU</label>
+                </div>
+
+                <button type="submit" id="begin">Begin!</button>
+            </form>
         </div>
     </body>
 </html>

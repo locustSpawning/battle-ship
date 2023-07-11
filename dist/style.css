@@ -46,6 +46,12 @@ body {
     border-radius: 5px;
 }
 
+#p2-form-select {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
 /* BUTTONS */
 
 button {
@@ -60,13 +66,14 @@ button {
     color: yellow;
 }
 
-#p2-select {
+#p2-form-select {
     display: flex;
     justify-content: space-evenly;
     align-content: space-between;
+    list-style-type: none;
 }
 
-.p2-buttons {
+/* .p2-buttons {
     background-color: transparent;
     color: white;
     transition: transform 0.3s;
@@ -77,6 +84,23 @@ button {
 }
 .p2-buttons:focus {
     transform: scale(1.4);
+    color: yellow;
+    font-weight: 800;
+} */
+.p2-buttons {
+    display: flex;
+    justify-content: center;
+    margin-right: 35px;
+    gap: 25px;
+}
+.p2-buttons input[type='radio'] {
+    opacity: 0.011;
+    z-index: 100;
+    transition: transform 0.3s;
+}
+
+.p2-buttons input[type='radio']:checked + label {
+    transform: scale(1.2);
     color: yellow;
     font-weight: 800;
 }
