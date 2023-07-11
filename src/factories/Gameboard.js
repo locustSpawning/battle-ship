@@ -1,5 +1,6 @@
 function GameBoard() {
     var self = {};
+    self.size = [10, 10];
     self.attackedCoords = new Set();
     self.ships = new Set();
 
@@ -16,11 +17,21 @@ function GameBoard() {
         return ship.coordinate;
     };
 
-    self.shotFired = (coordinate) => {
+    self.isCoordinateOpen = () => {
         if (self.attackedCoords.has(coordinate.toString())) {
+            return false;
+        } else {
+            return true;
+        }
+    };
+
+    self.shotFired = (coordinate) => {
+        if (self.isCoordinateOpen(coordinate)) {
+            self.attackedCoords.add(coordinate.toString());
+        } else {
             throw new Error('Already Fired Here');
         }
-        self.attackedCoords.add(coordinate.toString());
+
         if (ship.occupiesCoordinate(coordinate) == true) {
             ship.hit();
         }
