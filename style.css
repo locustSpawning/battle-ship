@@ -1,0 +1,101 @@
+:root {
+    --background-light: rgba(0, 0, 0, 0.6);
+    --background-light-hover: rgba(99, 99, 99, 0.4);
+    --background-dark: rgba(0, 0, 0, 0.9);
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    line-height: 1.6;
+}
+
+body {
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    background-image: url('images/water.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+#title {
+    font-size: 80px;
+    font-weight: 1000;
+    -webkit-text-stroke: 3px black;
+    margin-top: 50px;
+}
+
+#settings {
+    display: flex;
+    flex-direction: column;
+    font-size: 40px;
+    max-width: 700px;
+    padding: 2rem 4rem 2rem 4rem;
+    margin: 8rem 0;
+    background-color: var(--background-light);
+    border-radius: 5px;
+}
+
+/* BUTTONS */
+
+button {
+    border: none;
+    padding: 10px;
+    font-size: 35px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    border-radius: 5px;
+}
+
+#p1 {
+    color: yellow;
+}
+
+#p2-select {
+    display: flex;
+    justify-content: space-evenly;
+    align-content: space-between;
+}
+
+.p2-buttons {
+    background-color: transparent;
+    color: white;
+    transition: transform 0.3s;
+}
+.p2-buttons:hover {
+    transform: scale(1.2);
+    color: yellow;
+}
+.p2-buttons:focus {
+    transform: scale(1.4);
+    color: yellow;
+    font-weight: 800;
+}
+
+#begin {
+    background-color: var(--background-dark);
+    color: yellow;
+    width: 200px;
+    align-self: center;
+    margin-top: 35px;
+    transition: transform 0.3s;
+}
+
+#begin:hover {
+    transform: scale(1.2);
+}
+#begin:active {
+    transform: scale(1.4);
+    background-color: yellow;
+    color: white;
+    -webkit-text-stroke: 1px darkgoldenrod;
+}
