@@ -142,7 +142,7 @@ button {
     /*display: flex;*/
     flex-direction: column;
     justify-content: center;
-    align-content: center;
+    align-items: center;
     text-align: center;
     font-size: 40px;
     max-width: 900px;
@@ -168,7 +168,6 @@ button {
     padding: 0;
     margin: 0;
     font-size: 0;
-    outline: 3px solid #000000;
 }
 
 /* Grids */
