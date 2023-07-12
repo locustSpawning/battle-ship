@@ -60,7 +60,7 @@ function handleSubmit(e) {
     var game = new Game();
     console.log(p2);
     console.log(p2.value);
-    if (p2.value == 'on') {
+    if (p2.checked) {
         game.setPlayerIsCPU(player2Board, true);
         console.log('p2 is cpu');
         var readyBtn = document.getElementById('p2-ready-button');
