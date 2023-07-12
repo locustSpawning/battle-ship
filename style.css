@@ -37,6 +37,7 @@ body {
 
 #settings {
     display: flex;
+    /* display: none; */
     flex-direction: column;
     font-size: 40px;
     max-width: 700px;
@@ -44,6 +45,7 @@ body {
     margin: 8rem 0;
     background-color: var(--background-light);
     border-radius: 5px;
+    animation: fadeIn 1.5s;
 }
 
 #p2-form-select {
@@ -105,7 +107,8 @@ button {
     font-weight: 800;
 }
 
-#begin {
+#begin,
+.ready {
     background-color: var(--background-dark);
     color: yellow;
     width: 200px;
@@ -114,12 +117,80 @@ button {
     transition: transform 0.3s;
 }
 
-#begin:hover {
+#begin:hover,
+.ready:hover {
     transform: scale(1.2);
 }
-#begin:active {
+#begin:active,
+.ready:active {
     transform: scale(1.4);
     background-color: yellow;
     color: white;
     -webkit-text-stroke: 1px darkgoldenrod;
+}
+
+/* Game Play */
+
+#game-board {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+}
+
+.container {
+    display: none;
+    /*display: flex;*/
+    flex-direction: column;
+    align-content: center;
+    text-align: center;
+    font-size: 40px;
+    max-width: 900px;
+    max-height: 900px;
+    min-width: 900px;
+    min-height: 900px;
+    padding: 2rem 4rem 2rem 4rem;
+    margin: 8rem 0;
+    background-color: var(--background-light);
+    border-radius: 5px;
+    animation: fadeIn 1.5s;
+}
+
+#player1-board,
+#player2-board {
+    transform-origin: top left;
+    flex: 1;
+    flex-wrap: wrap;
+    justify-content: stretch;
+    align-content: center;
+    top: 30px;
+    padding: 0;
+    margin: 0;
+
+    outline: 3px solid #000000;
+}
+
+/* Grids */
+
+.box {
+    flex: 0;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background-color: white;
+    min-height: 60px;
+    min-width: 60px;
+    outline: 2px solid grey;
+    border: 0px;
+}
+
+/* Animations */
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
 }
