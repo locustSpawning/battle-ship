@@ -1,21 +1,7 @@
-const GameBoard = require('../factories/Gameboard');
-const Ship = require('../factories/Ship');
-const Player = require('../factories/Player');
-const computerPlayer = require('../factories/Player');
-
-window.addEventListener('load', (event) => {
-    const beginButton = document.getElementById('begin');
-    beginButton.addEventListener('click', handleSubmit);
-    const p2 = document.querySelector('input[name="p2-buttons"]:checked').value;
-});
-
-function handleSubmit(e) {
-    e.preventDefault();
-    game = Game();
-    if (p2 == 'p2CPU') {
-        game.setPlayerIsCPU(self.player2, isCPU);
-    }
-}
+const GameBoard = require('./factories/Gameboard');
+const Ship = require('./factories/Ship');
+const Player = require('./factories/Player');
+const computerPlayer = require('./factories/Player');
 
 function Game() {
     var self = {};
@@ -62,3 +48,5 @@ function Game() {
         player.isCPU = isCPU;
     };
 }
+
+module.exports = Game;

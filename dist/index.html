@@ -8,7 +8,7 @@
             href="https://em-content.zobj.net/thumbs/120/google/350/water-wave_1f30a.png"
         />
         <title>BattleShip</title>
-        <script type="module" defer src="main.js"></script>
+
         <link rel="stylesheet" href="./style.css" />
     </head>
     <body>
@@ -24,15 +24,10 @@
                         type="radio"
                         id="p2Human"
                         name="p2-buttons"
-                        value="p2Human"
                     />
                     <label for="p2Human">Human</label>
-                    <input
-                        type="radio"
-                        id="p2CPU"
-                        name="p2-buttons"
-                        value="p2CPU"
-                    />
+
+                    <input type="radio" id="p2CPU" name="p2-buttons" />
                     <label for="p2CPU">CPU</label>
                 </div>
 
@@ -41,9 +36,19 @@
         </div>
 
         <div id="game-board">
-            <div id="player1-board"></div>
-            <div id="player2-board"></div>
+            <div class="container">
+                <h3>Player 1</h3>
+                <div id="player1-board"></div>
+                <button class="ready">Ready!</button>
+            </div>
+
+            <div class="container">
+                <h3>Player 2</h3>
+                <div id="player2-board"></div>
+                <button class="ready">Ready!</button>
+            </div>
         </div>
         <div id="game-over"></div>
+        <script type="module" defer src="main.js"></script>
     </body>
 </html>
