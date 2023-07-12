@@ -47,6 +47,7 @@ function Game() {
     self.setPlayerIsCPU = (player, isCPU) => {
         player.isCPU = isCPU;
     };
+    return self;
 }
 
 module.exports = Game;

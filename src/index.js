@@ -18,7 +18,7 @@ function widthAndHeight(gameboard, container) {
         'scale(' + w + ', ' + h + ')';
 }
 
-var fggfgf;
+var p2;
 var container;
 
 window.addEventListener('load', (event) => {
@@ -49,16 +49,23 @@ window.addEventListener('load', (event) => {
 
     const beginButton = document.getElementById('begin');
     beginButton.addEventListener('click', handleSubmit);
-    fggfgf = document.getElementById('p2CPU');
+    p2 = document.getElementById('p2CPU');
 });
 
 function handleSubmit(e) {
     e.preventDefault();
     container = document.getElementsByClassName('container');
+    const player2Board = document.getElementById('player2-board');
 
-    var game = Game();
+    var game = new Game();
+    console.log(p2);
+    console.log(p2.value);
     if (p2.value == 'on') {
-        game.setPlayerIsCPU(self.player2, isCPU);
+        game.setPlayerIsCPU(player2Board, true);
+        console.log('p2 is cpu');
+        var readyBtn = document.getElementById('p2-ready-button');
+        readyBtn.style.visibility = 'hidden';
+        readyBtn.disabled = true;
     }
     document.getElementById('settings').style.display = 'none';
     container[0].style.display = 'flex';
