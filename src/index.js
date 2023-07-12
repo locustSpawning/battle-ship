@@ -33,11 +33,13 @@ window.addEventListener('load', (event) => {
         for (var i = 0; i < num * num; i++) {
             const div = document.createElement('div');
             div.classList.add('box');
+            div.addEventListener('click', colordiv);
             player1Board.appendChild(div);
         }
         for (var i = 0; i < num * num; i++) {
             const div = document.createElement('div');
             div.classList.add('box');
+            div.addEventListener('click', colordiv);
             player2Board.appendChild(div);
         }
 
@@ -58,11 +60,8 @@ function handleSubmit(e) {
     const player2Board = document.getElementById('player2-board');
 
     var game = new Game();
-    console.log(p2);
-    console.log(p2.value);
     if (p2.checked) {
         game.setPlayerIsCPU(player2Board, true);
-        console.log('p2 is cpu');
         var readyBtn = document.getElementById('p2-ready-button');
         readyBtn.style.visibility = 'hidden';
         readyBtn.disabled = true;
@@ -70,4 +69,10 @@ function handleSubmit(e) {
     document.getElementById('settings').style.display = 'none';
     container[0].style.display = 'flex';
     container[1].style.display = 'flex';
+}
+
+function colordiv(e) {
+    let thisDiv = e.target.closest('.box');
+    console.log(thisDiv);
+    thisDiv.style.backgroundColor = 'white';
 }
