@@ -53,8 +53,9 @@ window.addEventListener('load', (event) => {
 });
 
 function handleSubmit(e) {
-    container = document.getElementsByClassName('container');
     e.preventDefault();
+    container = document.getElementsByClassName('container');
+
     var game = Game();
     if (p2.value == 'on') {
         game.setPlayerIsCPU(self.player2, isCPU);
