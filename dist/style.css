@@ -141,6 +141,7 @@ button {
     display: none;
     /*display: flex;*/
     flex-direction: column;
+    justify-content: center;
     align-content: center;
     text-align: center;
     font-size: 40px;
@@ -158,6 +159,7 @@ button {
 #player1-board,
 #player2-board {
     transform-origin: top left;
+    display: flex;
     flex: 1;
     flex-wrap: wrap;
     justify-content: stretch;
@@ -165,7 +167,7 @@ button {
     top: 30px;
     padding: 0;
     margin: 0;
-
+    font-size: 0;
     outline: 3px solid #000000;
 }
 
