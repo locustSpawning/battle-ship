@@ -172,7 +172,8 @@ button {
 
 /* Grids */
 
-.box {
+.player-1-box,
+.player-2-box {
     flex: 0;
     margin: 0;
     padding: 0;

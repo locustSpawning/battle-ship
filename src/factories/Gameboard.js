@@ -17,7 +17,7 @@ function GameBoard() {
         return ship.coordinate;
     };
 
-    self.isCoordinateOpen = () => {
+    self.isCoordinateOpen = (coordinate) => {
         if (self.attackedCoords.has(coordinate.toString())) {
             return false;
         } else {

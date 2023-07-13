@@ -5,8 +5,8 @@ const computerPlayer = require('./factories/Player');
 
 function Game() {
     var self = {};
-    self.player1 = new Player();
-    self.player2 = new Player();
+    self.player1 = Player();
+    self.player2 = Player();
 
     self.currentPlayer = null;
     self.currentOpponent = null;
