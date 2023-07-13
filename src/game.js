@@ -8,40 +8,41 @@ function Game() {
     self.player1 = Player();
     self.player2 = Player();
 
-    self.currentPlayer = null;
-    self.currentOpponent = null;
+    self.currentPlayer = self.player1;
+    self.currentOpponent = self.player2;
 
     self.playerAttackCoordinate = (coordinate) => {
-        self.currentOpponent.GameBoard.shotFired(coordinate);
+        return self.currentOpponent.gameBoard.shotFired(coordinate);
     };
 
     self.isGameOver = () => {
-        if (self.currentOpponent.allShipsSunk() == true) {
+        if (self.currentOpponent.gameBoard.allShipsSunk() == true) {
             return true;
         }
         return false;
     };
 
     self.newTurn = () => {
-        nextPlayer = currentOpponent;
+        var nextPlayer = self.currentOpponent;
         self.currentOpponent = self.currentPlayer;
         self.currentPlayer = nextPlayer;
     };
 
     self.doComputerAttack = () => {
+        let gameBoard = self.currentOpponent.gameBoard;
+        var randCoordinate;
         while (true) {
             randCoordinate = [
-                Math.floor(Math.random() * self.GameBoard.size[0]),
-                Math.floor(Math.random() * self.GameBoard.size[1]),
+                Math.floor(Math.random() * gameBoard.size[0]),
+                Math.floor(Math.random() * gameBoard.size[1]),
             ];
-            if (
-                self.currentOpponent.GameBoard.isCoordinateOpen(randCoordinate)
-            ) {
+            if (gameBoard.isCoordinateOpen(randCoordinate)) {
                 break;
             }
         }
 
-        self.playerAttackCoordinate(randCoordinate);
+        //self.playerAttackCoordinate(randCoordinate);
+        return randCoordinate;
     };
 
     self.setPlayerIsCPU = (player, isCPU) => {

@@ -26,15 +26,18 @@ function GameBoard() {
     };
 
     self.shotFired = (coordinate) => {
-        if (self.isCoordinateOpen(coordinate)) {
+        if (self.isCoordinateOpen(coordinate) == true) {
             self.attackedCoords.add(coordinate.toString());
         } else {
             throw new Error('Already Fired Here');
         }
-
-        if (ship.occupiesCoordinate(coordinate) == true) {
-            ship.hit();
+        for (const ship of self.ships.keys()) {
+            if (ship.occupiesCoordinate(coordinate) == true) {
+                ship.hit();
+                return true;
+            }
         }
+        return false;
     };
 
     self.allShipsSunk = () => {

@@ -36,14 +36,12 @@ window.addEventListener('load', (event) => {
             const div = document.createElement('div');
             div.classList.add('player-1-box');
             div.id = Utilities.divOrdToId(1, i);
-            div.addEventListener('click', colordiv);
             player1Board.appendChild(div);
         }
         for (var i = 0; i < num * num; i++) {
             const div = document.createElement('div');
             div.classList.add('player-2-box');
             div.id = Utilities.divOrdToId(2, i);
-            div.addEventListener('click', colordiv);
             player2Board.appendChild(div);
         }
 
@@ -60,7 +58,7 @@ window.addEventListener('load', (event) => {
 
 function checkGameReady() {
     if (game.player1IsReady == true && game.player2IsReady == true) {
-        console.log('cocks');
+        player1Turn();
     }
 }
 
@@ -72,14 +70,16 @@ function handleSubmit(e) {
     game = Game();
     game.player1IsReady = false;
     game.player2IsReady = false;
-    readyP1.addEventListener('click', () => {
+    readyP1.addEventListener('click', (e) => {
+        e.stopPropagation();
         game.player1IsReady = true;
         var readyBtn1 = document.getElementById('p1-ready-button');
         readyBtn1.style.visibility = 'hidden';
         readyBtn1.disabled = true;
         checkGameReady();
     });
-    readyP2.addEventListener('click', () => {
+    readyP2.addEventListener('click', (e) => {
+        e.stopPropagation();
         game.player2IsReady = true;
         var readyBtn2 = document.getElementById('p2-ready-button');
         readyBtn2.style.visibility = 'hidden';
@@ -109,25 +109,91 @@ function handleSubmit(e) {
 }
 
 function colordiv(e) {
-    let thisDiv = e.target.closest('.box');
-    console.log(thisDiv);
-    thisDiv.style.backgroundColor = 'white';
+    let isP1Turn = game.currentPlayer == game.player1;
+    var allBoxesClass;
+    var container = document.getElementsByClassName('container');
+    var gameOver = document.getElementById('game-over');
+    let winner = document.getElementById('winner');
+    let playAgainButton = document.getElementById('play-again');
+
+    var coord;
+    var color = 'white';
+    var successfulMove = true;
+
+    if (game.currentPlayer.isCPU == true) {
+        coord = game.doComputerAttack();
+    } else {
+        if (isP1Turn == true) {
+            allBoxesClass = '.player-2-box';
+        } else {
+            allBoxesClass = '.player-1-box';
+        }
+        let thisP2Div = e.target.closest(allBoxesClass);
+        coord = Utilities.divIdtoCoordinate(game, thisP2Div.id);
+    }
+    let attackDiv = document.getElementById(
+        Utilities.coordinateToDiv(game, game.currentOpponent, coord)
+    );
+
+    try {
+        if (game.playerAttackCoordinate(coord)) {
+            color = 'red';
+        }
+    } catch (err) {
+        successfulMove = false;
+    }
+    if (successfulMove == true) {
+        attackDiv.style.backgroundColor = color;
+        if (game.isGameOver() == true) {
+            console.log('game is joever');
+            var silenceP2Board = document.getElementById('player2-board');
+            silenceP2Board.removeEventListener('click', colordiv);
+
+            var silenceP1Board = document.getElementById('player1-board');
+            silenceP1Board.addEventListener('click', colordiv);
+            game = Game();
+            container[0].style.display = 'none';
+            container[1].style.display = 'none';
+            gameOver.style.display = 'flex';
+            if (isP1Turn == true) {
+                winner.innerText = 'Player 1 Wins!';
+            } else {
+                winner.innerText = 'Player 2 Wins!';
+            }
+            playAgainButton.addEventListener('click', (e) => {
+                document.location.reload();
+            });
+            return;
+        }
+        game.newTurn();
+
+        if (isP1Turn == true) {
+            player2Turn();
+        } else {
+            player1Turn();
+        }
+    }
 }
 
-// stopped here  - - - bug where boards dissapear
-// function player1Turn() {
-//     var silenceP1Board = document.getElementById('player1-board');
-//     console.log(silenceP1Board);
-//     silenceP1Board.removeEventListener('click', colordiv);
-//     document
-//         .getElementById('player2-board')
-//         .addEventListener('click', colordiv);
-// }
+function player1Turn() {
+    var silenceP1Board = document.getElementById('player1-board');
+    silenceP1Board.removeEventListener('click', colordiv);
+    if (game.player1.isCPU != true) {
+        var silenceP2Board = document.getElementById('player2-board');
+        silenceP2Board.addEventListener('click', colordiv);
+    } else {
+        colordiv();
+    }
+}
 
-// function player2Turn() {
-//     var silenceP2Board = document.getElementById('player2-board');
-//     silenceP2Board.removeEventListener('click', colordiv);
-//     document
-//         .getElementById('player1-board')
-//         .addEventListener('click', colordiv);
-// }
+function player2Turn() {
+    var silenceP2Board = document.getElementById('player2-board');
+    silenceP2Board.removeEventListener('click', colordiv);
+
+    if (game.player2.isCPU != true) {
+        var silenceP1Board = document.getElementById('player1-board');
+        silenceP1Board.addEventListener('click', colordiv);
+    } else {
+        colordiv();
+    }
+}

@@ -48,6 +48,23 @@ body {
     animation: fadeIn 1.5s;
 }
 
+#game-over {
+    display: none;
+    /* display: none; */
+    flex-direction: column;
+    font-size: 40px;
+    max-width: 700px;
+    padding: 2rem 4rem 2rem 4rem;
+    margin: 8rem 0;
+    background-color: var(--background-light);
+    border-radius: 5px;
+    animation: fadeIn 1.5s;
+}
+
+#winner {
+    color: yellow;
+}
+
 #p2-form-select {
     display: flex;
     flex-direction: column;
@@ -108,7 +125,8 @@ button {
 }
 
 #begin,
-.ready {
+.ready,
+#play-again {
     background-color: var(--background-dark);
     color: yellow;
     width: 200px;
@@ -118,11 +136,13 @@ button {
 }
 
 #begin:hover,
-.ready:hover {
+.ready:hover,
+#play-again:hover {
     transform: scale(1.2);
 }
 #begin:active,
-.ready:active {
+.ready:active,
+#play-again:active {
     transform: scale(1.4);
     background-color: yellow;
     color: white;

@@ -8,6 +8,7 @@ function divOrdToId(playerNumber, x) {
 
 function coordinateToDiv(game, player, coordinate) {
     let width = player.gameBoard.size[0];
+    var playerNumber;
     if (player == game.player1) {
         playerNumber = 1;
     } else if (player == game.player2) {
@@ -19,7 +20,9 @@ function coordinateToDiv(game, player, coordinate) {
 }
 
 function divIdtoCoordinate(game, idNumber) {
+    var player;
     let playerId = idNumber.slice(0, 2);
+    console.log(playerId);
     if (playerId == 'p1') {
         player = game.player1;
     } else if (playerId == 'p2') {
